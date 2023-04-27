@@ -22,10 +22,10 @@ for (let i = 1; i < 11; i++) {
 
 const inputRow = document.getElementById('rowInput');
 const inputData = document.getElementById('dataInput');
-const btnFind = document.getElementById('button');
-btnFind.addEventListener('click', () => findCell());
+const btnMark = document.getElementById('button');
+btnMark.addEventListener('click', () => markCell());
 
-function findCell () {
+function markCell () {
     console.log("row:", inputRow.value);
     console.log("data:", inputData.value);
 
