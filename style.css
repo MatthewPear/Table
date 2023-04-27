@@ -3,8 +3,8 @@
 }
 .table{
     border: 2px solid black;
-    height: 700px;
-    width: 700px;
+    height: 500px;
+    width: 500px;
     border-spacing: 0px;
 }
 .row{
@@ -13,4 +13,51 @@
 .data{
     border: 2px solid black;
     padding: 0px;
+}
+.data red {
+    border: 2px solid black;
+    padding: 0px;
+    background-color: red;
+}
+.display {
+    border: solid 2px #000;
+    height: 20px;
+    max-width: 200px;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right:  10px;
+    margin-left: 10px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 15%;
+}
+.name {
+    height: 20px;
+    max-width: 200px;
+    padding: 10px;
+    display: block;
+    margin-top: 10px;
+    margin-right:  10px;
+    margin-left: 10px;
+    line-height: 20px;
+    border-radius: 25%;
+}
+.smallButton {
+    display: inline;
+    vertical-align: middle;
+    line-height: 20px;
+    margin: 35px 10px;
+    padding: 20px 20px;
+    border-radius: 25%;
+    cursor: pointer;
+    border: solid 2px #000;
+}
+.smallButton:hover {
+    background-color: black;
+    color: white;
+}
+.smallButton:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
