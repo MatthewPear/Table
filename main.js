@@ -12,7 +12,7 @@ for (let i = 0; i < 10; i++) {
     myRow.classList.add("tr");
     tblBody.appendChild(myRow);
 
-    for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
         const myData = document.createElement("TD");
         myData.setAttribute("id", "myData");
         myData.classList.add("td");
