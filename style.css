@@ -1,16 +1,16 @@
 .body{
     text-align: center;
-    
 }
 .table{
     border: 2px solid black;
     height: 700px;
     width: 700px;
+    border-spacing: 0px;
 }
-.tr{
+.row{
     border: 2px solid black;
 }
-.td{
+.data{
     border: 2px solid black;
     padding: 0px;
 }
