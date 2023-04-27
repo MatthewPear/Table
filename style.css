@@ -1,0 +1,15 @@
+.body{
+    text-align: center;
+    
+}
+.table{
+    border: 2px solid black;
+    height: 500px;
+    width: 500px;
+}
+.tr{
+    border: 2px solid black;
+}
+.td{
+    border: 2px solid black;
+}
