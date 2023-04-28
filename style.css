@@ -6,6 +6,7 @@
     height: 500px;
     width: 500px;
     border-spacing: 0px;
+    margin: 0px;
 }
 .row{
     border: 2px solid black;
@@ -14,7 +15,11 @@
     border: 2px solid black;
     padding: 0px;
 }
-.data red {
+.menu {
+    position: absolute;
+    left: 600px
+}
+.redData{
     border: 2px solid black;
     padding: 0px;
     background-color: red;

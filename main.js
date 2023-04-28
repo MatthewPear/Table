@@ -4,6 +4,7 @@ myTable.classList.add("table");
 document.body.appendChild(myTable);
 
 const tblBody = document.createElement("tbody");
+tblBody.setAttribute("id", "tblBody")
 myTable.appendChild(tblBody);
 
 for (let i = 1; i < 11; i++) {
@@ -14,7 +15,9 @@ for (let i = 1; i < 11; i++) {
 
     for (let j = 1; j < 11; j++) {
         const myData = document.createElement("TD");
-        myData.setAttribute("id", "data" + j);
+        let cellID = 'row' + i + 'data' + j;
+        myData.setAttribute("id", cellID);
+        myData.setAttribute("name", "data");
         myData.classList.add("data");
         myRow.appendChild(myData);
     }
@@ -29,6 +32,16 @@ function markCell () {
     console.log("row:", inputRow.value);
     console.log("data:", inputData.value);
 
-    // myData.classList.add("data red");
+    const clearCell = [...document.getElementsByName('data')];
+    clearCell.forEach((el) => {
+        el.classList.remove("redData");
+        el.classList.add("data");
+    })
+    
+    myCell = document.getElementById("row" + inputRow.value + "data" + inputData.value)
+    // myCell = document.getElementById("myTable").rows[inputRow.value].cells.namedItem("data" + inputData.value);
+    console.log("myCell: ", myCell);
+    myCell.classList.add("redData");
+    
 
 }
