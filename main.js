@@ -9,13 +9,13 @@ myTable.appendChild(tblBody);
 
 for (let i = 1; i < 11; i++) {
     const myRow = document.createElement("TR");
-    myRow.setAttribute("id", "row" + i);
+    myRow.setAttribute("id", i);
     myRow.classList.add("row");
     tblBody.appendChild(myRow);
 
     for (let j = 1; j < 11; j++) {
         const myData = document.createElement("TD");
-        let cellID = 'row' + i + '-' + 'data' + j;
+        let cellID = i + '-' + j;
         myData.setAttribute("id", cellID);
         myData.setAttribute("name", "data");
         myData.classList.add("data");
@@ -43,8 +43,11 @@ for (let i = 1; i < 11; i++) {
 //     console.log("myCell: ", myCell);
 //     myCell.classList.add("redData");
 // }
-const primeCell = document.getElementById("row5-data5")
-primeCell.classList.add("redData");
+let x = Math.floor((Math.random() * 10) + 1);
+let y = Math.floor((Math.random() * 10) + 1);
+
+const primeCell = document.getElementById(x + '-' + y)
+primeCell.classList.add("active-data");
 
 const btnUp = document.getElementById('btnUp');
 const btnDown = document.getElementById('btnDown');
@@ -70,13 +73,13 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-let activeCell = [...document.getElementsByClassName("redData")];
-console.log('activeCell', activeCell[0].id)
+let activeCell = primeCell;
+console.log('activeCell', activeCell.id)
 
-let activeRow = activeCell[0].id.split('-')[0].split('row')[1];
+let activeRow = activeCell.id.split('-')[0];
 console.log("activeRow", activeRow);
 
-let activeData = activeCell[0].id.split('-')[1].split('data')[1];
+let activeData = activeCell.id.split('-')[1];
 console.log("activeData", activeData);
 
 
@@ -85,36 +88,32 @@ function moveCell (direction) {
 
     const clearCell = [...document.getElementsByName('data')];
     clearCell.forEach((el) => {
-        el.classList.remove("redData");
+        el.classList.remove("active-data");
         el.classList.add("data");
     })
 
     if (direction === 'Up') {
-            let activeCellID = 'row' + (+activeRow - 1) + '-' + 'data' + activeData;
-            activeCell[0].setAttribute("id", activeCellID);
-            activeCell[0].classList.remove("data");
-            activeCell[0].classList.add("redData");
+            let activeCellID = (+activeRow - 1) + '-' + activeData;
+            let activeCell = document.getElementById(activeCellID);
+            activeCell.classList.add("active-data");
             console.log('activeCellID', activeCellID)
         
     } else if (direction === 'Down') {
-            let activeCellID = 'row' + (+activeRow + 1) + '-' + 'data' + activeData;
-            activeCell[0].setAttribute("id", activeCellID);
-            activeCell[0].classList.remove("data");
-            activeCell[0].classList.add("redData");
+            let activeCellID = (+activeRow + 1) + '-' +  activeData;
+            let activeCell = document.getElementById(activeCellID);
+            activeCell.classList.add("active-data");
             console.log('activeCellID', activeCellID)
 
     } else if (direction === 'Left') {
-            let activeCellID = 'row' + activeRow + '-' + 'data' + (+activeData - 1);
-            activeCell[0].setAttribute("id", activeCellID);
-            activeCell[0].classList.remove("data");
-            activeCell[0].classList.add("redData");
+            let activeCellID = activeRow + '-' + (+activeData - 1);
+            let activeCell = document.getElementById(activeCellID);
+            activeCell.classList.add("active-data");
             console.log('activeCellID', activeCellID)
 
     } else if (direction === 'Right') {
-            let activeCellID = 'row' + activeRow  + '-' + 'data' + (+activeData + 1);
-            activeCell[0].setAttribute("id", activeCellID);
-            activeCell[0].classList.remove("data");
-            activeCell[0].classList.add("redData");
+            let activeCellID = activeRow  + '-' + (+activeData + 1);
+            let activeCell = document.getElementById(activeCellID);
+            activeCell.classList.add("active-data");
             console.log('activeCellID', activeCellID)
     }
 }
