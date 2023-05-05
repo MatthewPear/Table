@@ -73,15 +73,8 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-let activeCell = primeCell;
-console.log('activeCell', activeCell.id)
-
-let activeRow = activeCell.id.split('-')[0];
-console.log("activeRow", activeRow);
-
-let activeData = activeCell.id.split('-')[1];
-console.log("activeData", activeData);
-
+let activeCell = primeCell.id.split('-')[0] + '-' + primeCell.id.split('-')[1];
+console.log('activeCell', activeCell)
 
 function moveCell (direction) {
     console.log('direction', direction);
@@ -93,27 +86,27 @@ function moveCell (direction) {
     })
 
     if (direction === 'Up') {
-            let activeCellID = (+activeRow - 1) + '-' + activeData;
-            let activeCell = document.getElementById(activeCellID);
-            activeCell.classList.add("active-data");
-            console.log('activeCellID', activeCellID)
+            activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
+            let nextCell = document.getElementById(activeCell);
+            nextCell.classList.add("active-data");
+            console.log('activeCellID', activeCell)
         
     } else if (direction === 'Down') {
-            let activeCellID = (+activeRow + 1) + '-' +  activeData;
-            let activeCell = document.getElementById(activeCellID);
-            activeCell.classList.add("active-data");
-            console.log('activeCellID', activeCellID)
+            activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
+            let nextCell = document.getElementById(activeCell);
+            nextCell.classList.add("active-data");
+            console.log('activeCellID', activeCell)
 
     } else if (direction === 'Left') {
-            let activeCellID = activeRow + '-' + (+activeData - 1);
-            let activeCell = document.getElementById(activeCellID);
-            activeCell.classList.add("active-data");
-            console.log('activeCellID', activeCellID)
+            activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
+            let nextCell = document.getElementById(activeCell);
+            nextCell.classList.add("active-data");
+            console.log('activeCellID', activeCell)
 
     } else if (direction === 'Right') {
-            let activeCellID = activeRow  + '-' + (+activeData + 1);
-            let activeCell = document.getElementById(activeCellID);
-            activeCell.classList.add("active-data");
-            console.log('activeCellID', activeCellID)
+            activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
+            let nextCell = document.getElementById(activeCell);
+            nextCell.classList.add("active-data");
+            console.log('activeCellID', activeCell)
     }
 }
