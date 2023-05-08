@@ -87,24 +87,36 @@ function moveCell (direction) {
 
     if (direction === 'Up') {
             activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
+            if(+activeCell.split('-')[0] === 0){
+                activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
+            }
             let nextCell = document.getElementById(activeCell);
             nextCell.classList.add("active-data");
             console.log('activeCellID', activeCell)
         
     } else if (direction === 'Down') {
             activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
+            if(+activeCell.split('-')[0] === 11){
+                activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
+            }
             let nextCell = document.getElementById(activeCell);
             nextCell.classList.add("active-data");
             console.log('activeCellID', activeCell)
 
     } else if (direction === 'Left') {
             activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
+            if(+activeCell.split('-')[1] === 0){
+                activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
+            }
             let nextCell = document.getElementById(activeCell);
             nextCell.classList.add("active-data");
             console.log('activeCellID', activeCell)
 
     } else if (direction === 'Right') {
             activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
+            if(+activeCell.split('-')[1] === 11){
+                activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
+            }
             let nextCell = document.getElementById(activeCell);
             nextCell.classList.add("active-data");
             console.log('activeCellID', activeCell)
