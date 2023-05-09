@@ -15,10 +15,18 @@
     border: 2px solid black;
     padding: 0px;
 }
-.menu {
-    margin-top: 100px;
+.menu1 {
+    margin-top: 0px;
     position: absolute;
-    left: 700px;
+    left: 740px;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+}
+.menu2 {
+    margin-top: 300px;
+    position: absolute;
+    left: 696px;
     display: inline;
 }
 .controls {
@@ -34,7 +42,7 @@
 .display {
     border: solid 2px #000;
     height: 20px;
-    max-width: 200px;
+    max-width: 60px;
     padding: 10px;
     display: inline-block;
     margin-top: 10px;
@@ -76,4 +84,8 @@
 }
 #btnUp {
     margin-left: 71px;
+}
+#btnDraw {
+    margin-top: 20px;
+    margin-left: 14px;
 }

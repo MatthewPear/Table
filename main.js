@@ -1,27 +1,3 @@
-const myTable = document.createElement("TABLE");
-myTable.setAttribute("id", "myTable");
-myTable.classList.add("table");
-document.body.appendChild(myTable);
-
-const tblBody = document.createElement("tbody");
-tblBody.setAttribute("id", "tblBody")
-myTable.appendChild(tblBody);
-
-for (let i = 1; i < 11; i++) {
-    const myRow = document.createElement("TR");
-    myRow.setAttribute("id", i);
-    myRow.classList.add("row");
-    tblBody.appendChild(myRow);
-
-    for (let j = 1; j < 11; j++) {
-        const myData = document.createElement("TD");
-        let cellID = i + '-' + j;
-        myData.setAttribute("id", cellID);
-        myData.setAttribute("name", "data");
-        myData.classList.add("data");
-        myRow.appendChild(myData);
-    }
-}
 //////////////////TASK1
 // const inputRow = document.getElementById('rowInput');
 // const inputData = document.getElementById('dataInput');
@@ -43,11 +19,58 @@ for (let i = 1; i < 11; i++) {
 //     console.log("myCell: ", myCell);
 //     myCell.classList.add("redData");
 // }
-let x = Math.floor((Math.random() * 10) + 1);
-let y = Math.floor((Math.random() * 10) + 1);
+//////////////////////TASK2
 
-const primeCell = document.getElementById(x + '-' + y)
-primeCell.classList.add("active-data");
+inputRow = document.getElementById('rowInput');
+inputData = document.getElementById('dataInput');
+btnDraw.addEventListener('click', () => drawTable());
+
+const myTable = document.createElement("TABLE");
+myTable.setAttribute("id", "myTable");
+myTable.classList.add("table");
+document.body.appendChild(myTable);
+
+function drawTable () {
+    const clearTable = [...document.getElementsByClassName('table')];
+    if (clearTable.length) {
+        clearTable.forEach((el) => {
+            el.remove();
+        })
+    }
+
+    const myTable = document.createElement("TABLE");
+    myTable.setAttribute("id", "myTable");
+    myTable.classList.add("table");
+    document.body.appendChild(myTable);
+
+    const tblBody = document.createElement("tbody");
+    tblBody.setAttribute("id", "tblBody")
+    myTable.appendChild(tblBody);
+
+    for (let i = 1; i < (+inputRow.value + 1); i++) {
+        const myRow = document.createElement("TR");
+        myRow.setAttribute("id", i);
+        myRow.classList.add("row");
+        tblBody.appendChild(myRow);
+
+        for (let j = 1; j < (+inputData.value + 1); j++) {
+            const myData = document.createElement("TD");
+            let cellID = i + '-' + j;
+            myData.setAttribute("id", cellID);
+            myData.setAttribute("name", "data");
+            myData.classList.add("data");
+            myRow.appendChild(myData);
+        }
+    }
+
+    let x = Math.floor((Math.random() * (+inputRow.value)) + 1);
+    let y = Math.floor((Math.random() * (+inputData.value)) + 1);
+    console.log('x', x);
+    console.log('y', y);
+
+    let primeCell = document.getElementById(x + '-' + y)
+    primeCell.classList.add("active-data");
+}
 
 const btnUp = document.getElementById('btnUp');
 const btnDown = document.getElementById('btnDown');
@@ -74,7 +97,7 @@ document.addEventListener('keydown', (event) => {
 })
 
 let activeCell = primeCell.id.split('-')[0] + '-' + primeCell.id.split('-')[1];
-console.log('activeCell', activeCell)
+    console.log('activeCell', activeCell)
 
 function moveCell (direction) {
     console.log('direction', direction);
@@ -96,7 +119,7 @@ function moveCell (direction) {
         
     } else if (direction === 'Down') {
             activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
-            if(+activeCell.split('-')[0] === 11){
+            if(+activeCell.split('-')[0] === (+inputRow.value + 1)){
                 activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
             }
             let nextCell = document.getElementById(activeCell);
@@ -114,7 +137,7 @@ function moveCell (direction) {
 
     } else if (direction === 'Right') {
             activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
-            if(+activeCell.split('-')[1] === 11){
+            if(+activeCell.split('-')[1] === (+inputData.value + 1)){
                 activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
             }
             let nextCell = document.getElementById(activeCell);
