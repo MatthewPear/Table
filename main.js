@@ -25,7 +25,8 @@ inputRow = document.getElementById('rowInput');
 inputData = document.getElementById('dataInput');
 btnDraw.addEventListener('click', () => drawTable());
 
-let primeCell = 1 + '-' + 1;
+let cellPool = [];
+console.log('cellPool', cellPool);
 
 function drawTable () {
     const clearTable = [...document.getElementsByClassName('table')];
@@ -65,8 +66,10 @@ function drawTable () {
     console.log('x', x);
     console.log('y', y);
 
-    primeCell = document.getElementById(x + '-' + y);
+    let primeCell = document.getElementById(x + '-' + y);
     primeCell.classList.add("active-data");
+    cellPool = [];
+    cellPool.push(primeCell.id);
 }
 
 const btnUp = document.getElementById('btnUp');
@@ -93,7 +96,7 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-let activeCell = primeCell.split('-')[0] + '-' + primeCell.split('-')[1];
+let activeCell = cellPool[0].split('-')[0] + '-' + cellPool[0].split('-')[1];
     console.log('activeCell', activeCell)
 
 function moveCell (direction) {
