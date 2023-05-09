@@ -25,7 +25,7 @@ inputRow = document.getElementById('rowInput');
 inputData = document.getElementById('dataInput');
 btnDraw.addEventListener('click', () => drawTable());
 
-let primeCell = 0 + '-' + 0;
+let primeCell = 1 + '-' + 1;
 
 function drawTable () {
     const clearTable = [...document.getElementsByClassName('table')];
