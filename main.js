@@ -27,6 +27,7 @@ btnDraw.addEventListener('click', () => drawTable());
 
 let activeCell = 1 + '-' + 1;
 let direction = 'Right';
+let myInterval;
 
 function drawTable () {
     const clearTable = [...document.getElementsByClassName('table')];
@@ -69,6 +70,8 @@ function drawTable () {
     activeCell = document.getElementById(x + '-' + y);
     activeCell.classList.add("active-data");
     activeCell = x + '-' + y;
+
+    myInterval = setInterval(moveCell, 1000);
 }
 
 console.log('activeCell', activeCell)
@@ -80,19 +83,19 @@ const btnRight = document.getElementById('btnRight');
 btnUp.addEventListener('click', () => {
     direction = 'Up';
     moveCell();
-    });
+});
 btnDown.addEventListener('click', () => {
     direction = 'Down';
     moveCell();
-    });
+});
 btnLeft.addEventListener('click', () => {
     direction = 'Left';
     moveCell();
-    });
+});
 btnRight.addEventListener('click', () => {
     direction = 'Right';
     moveCell();
-    });
+});
 
 document.addEventListener('keydown', (event) => {
     console.log('keybord:', event)
@@ -100,16 +103,16 @@ document.addEventListener('keydown', (event) => {
 
     if (event.key === 'ArrowUp') {
         direction = 'Up';
-        moveCell()
+        moveCell();
     } else if (event.key === 'ArrowDown') {
         direction = 'Down';
-        moveCell()
+        moveCell();
     } else if (event.key === 'ArrowLeft') {
         direction = 'Left';
-        moveCell()
+        moveCell();
     } else if (event.key === 'ArrowRight') {
         direction = 'Right';
-        moveCell()
+        moveCell();
     }
 })
 
@@ -126,36 +129,33 @@ function moveCell () {
             activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
             if(+activeCell.split('-')[0] === 0){
                 activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
+                alert('GAME OVER!');
+                clearInterval(myInterval);
             }
-            let nextCell = document.getElementById(activeCell);
-            nextCell.classList.add("active-data");
-            console.log('activeCellID', activeCell)
-        
     } else if (direction === 'Down') {
             activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
             if(+activeCell.split('-')[0] === (+inputRow.value + 1)){
                 activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
+                alert('GAME OVER!');
+                clearInterval(myInterval);
             }
-            let nextCell = document.getElementById(activeCell);
-            nextCell.classList.add("active-data");
-            console.log('activeCellID', activeCell)
-
     } else if (direction === 'Left') {
             activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
             if(+activeCell.split('-')[1] === 0){
                 activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
+                alert('GAME OVER!');
+                clearInterval(myInterval);
             }
-            let nextCell = document.getElementById(activeCell);
-            nextCell.classList.add("active-data");
-            console.log('activeCellID', activeCell)
-
     } else if (direction === 'Right') {
             activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
             if(+activeCell.split('-')[1] === (+inputData.value + 1)){
                 activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
+                alert('GAME OVER!');
+                clearInterval(myInterval);
             }
-            let nextCell = document.getElementById(activeCell);
-            nextCell.classList.add("active-data");
-            console.log('activeCellID', activeCell)
     }
+
+    let nextCell = document.getElementById(activeCell);
+    nextCell.classList.add("active-data");
+    console.log('activeCellID', activeCell)
 }
