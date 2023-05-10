@@ -67,7 +67,7 @@ function drawTable () {
 
     activeCell = document.getElementById(x + '-' + y);
     activeCell.classList.add("active-data");
-    activeCell = activeCell.id.split('-')[0] + '-' + activeCell.id.split('-')[1];
+    activeCell = x + '-' + y;
 }
 
 
