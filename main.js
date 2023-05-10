@@ -26,6 +26,7 @@ inputData = document.getElementById('dataInput');
 btnDraw.addEventListener('click', () => drawTable());
 
 let activeCell = 1 + '-' + 1;
+let direction = 'Right';
 
 function drawTable () {
     const clearTable = [...document.getElementsByClassName('table')];
@@ -70,34 +71,49 @@ function drawTable () {
     activeCell = x + '-' + y;
 }
 
-
 console.log('activeCell', activeCell)
 
 const btnUp = document.getElementById('btnUp');
 const btnDown = document.getElementById('btnDown');
 const btnLeft = document.getElementById('btnLeft');
 const btnRight = document.getElementById('btnRight');
-btnUp.addEventListener('click', () => moveCell('Up'));
-btnDown.addEventListener('click', () => moveCell('Down'));
-btnLeft.addEventListener('click', () => moveCell('Left'));
-btnRight.addEventListener('click', () => moveCell('Right'));
+btnUp.addEventListener('click', () => {
+    direction = 'Up';
+    moveCell();
+    });
+btnDown.addEventListener('click', () => {
+    direction = 'Down';
+    moveCell();
+    });
+btnLeft.addEventListener('click', () => {
+    direction = 'Left';
+    moveCell();
+    });
+btnRight.addEventListener('click', () => {
+    direction = 'Right';
+    moveCell();
+    });
 
 document.addEventListener('keydown', (event) => {
     console.log('keybord:', event)
     console.log('click on:', event.key)
 
     if (event.key === 'ArrowUp') {
-        moveCell('Up')
+        direction = 'Up';
+        moveCell()
     } else if (event.key === 'ArrowDown') {
-        moveCell('Down')
+        direction = 'Down';
+        moveCell()
     } else if (event.key === 'ArrowLeft') {
-        moveCell('Left')
+        direction = 'Left';
+        moveCell()
     } else if (event.key === 'ArrowRight') {
-        moveCell('Right')
+        direction = 'Right';
+        moveCell()
     }
 })
 
-function moveCell (direction) {
+function moveCell () {
     console.log('direction', direction);
 
     const clearCell = [...document.getElementsByName('data')];
