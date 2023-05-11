@@ -21,13 +21,22 @@
 // }
 //////////////////////TASK2
 
-inputRow = document.getElementById('rowInput');
-inputData = document.getElementById('dataInput');
+const inputRow = document.getElementById('rowInput');
+const inputData = document.getElementById('dataInput');
+const btnDraw = document.getElementById('btnDraw');
 btnDraw.addEventListener('click', () => drawTable());
 
+let c = 0;
+const counter = document.getElementById('counter');
+counter.textContent = c;
+
 let activeCell = 1 + '-' + 1;
+let pointCell = 2 + '-' + 2;
+
 let direction = 'Right';
 let myInterval;
+
+let over = false;
 
 function drawTable () {
     const clearTable = [...document.getElementsByClassName('table')];
@@ -61,6 +70,15 @@ function drawTable () {
             myRow.appendChild(myData);
         }
     }
+
+    let a = Math.floor((Math.random() * (+inputRow.value)) + 1);
+    let b= Math.floor((Math.random() * (+inputData.value)) + 1);
+    console.log('a', a);
+    console.log('b', b);
+
+    pointCell = document.getElementById(a + '-' + b);
+    pointCell.classList.add("point-data");
+    pointCell = a + '-' + b;
 
     let x = Math.floor((Math.random() * (+inputRow.value)) + 1);
     let y = Math.floor((Math.random() * (+inputData.value)) + 1);
@@ -116,46 +134,74 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
+// if (alert === true) {
+//     over = true;
+// }
+
+
 function moveCell () {
-    console.log('direction', direction);
+    if(over===false) {
+        console.log('direction', direction);
 
-    const clearCell = [...document.getElementsByName('data')];
-    clearCell.forEach((el) => {
-        el.classList.remove("active-data");
-        el.classList.add("data");
-    })
+        const clearCell = [...document.getElementsByName('data')];
+        clearCell.forEach((el) => {
+            el.classList.remove("active-data");
+            el.classList.add("data");
+        })
 
-    if (direction === 'Up') {
-            activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
-            if(+activeCell.split('-')[0] === 0){
-                activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
-                alert('GAME OVER!');
-                clearInterval(myInterval);
-            }
-    } else if (direction === 'Down') {
-            activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
-            if(+activeCell.split('-')[0] === (+inputRow.value + 1)){
+        if (direction === 'Up') {
                 activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
-                alert('GAME OVER!');
-                clearInterval(myInterval);
-            }
-    } else if (direction === 'Left') {
-            activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
-            if(+activeCell.split('-')[1] === 0){
-                activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
-                alert('GAME OVER!');
-                clearInterval(myInterval);
-            }
-    } else if (direction === 'Right') {
-            activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
-            if(+activeCell.split('-')[1] === (+inputData.value + 1)){
+                if(+activeCell.split('-')[0] === 0){
+                    activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
+                    alert('GAME OVER!');
+                    clearInterval(myInterval);
+                    over = true;
+                }
+        } else if (direction === 'Down') {
+                activeCell = (+activeCell.split('-')[0] + 1) + '-' + activeCell.split('-')[1];
+                if(+activeCell.split('-')[0] === (+inputRow.value + 1)){
+                    activeCell = (+activeCell.split('-')[0] - 1) + '-' + activeCell.split('-')[1];
+                    alert('GAME OVER!');
+                    clearInterval(myInterval);
+                    over = true;
+                }
+        } else if (direction === 'Left') {
                 activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
-                alert('GAME OVER!');
-                clearInterval(myInterval);
-            }
-    }
+                if(+activeCell.split('-')[1] === 0){
+                    activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
+                    alert('GAME OVER!');
+                    clearInterval(myInterval);
+                    over = true;
+                }
+        } else if (direction === 'Right') {
+                activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] + 1);
+                if(+activeCell.split('-')[1] === (+inputData.value + 1)){
+                    activeCell = activeCell.split('-')[0] + '-' + (+activeCell.split('-')[1] - 1);
+                    alert('GAME OVER!');
+                    clearInterval(myInterval);
+                    over = true;
+                }
+        }
 
-    let nextCell = document.getElementById(activeCell);
-    nextCell.classList.add("active-data");
-    console.log('activeCellID', activeCell)
+        let nextCell = document.getElementById(activeCell);
+        nextCell.classList.add("active-data");
+        console.log('activeCellID', activeCell)
+
+        if(activeCell === pointCell){
+            let removeCell = document.getElementById(pointCell);
+            removeCell.classList.remove("point-data");
+            c = c + 1;
+            counter.textContent = c;
+
+            let a = Math.floor((Math.random() * (+inputRow.value)) + 1);
+            let b= Math.floor((Math.random() * (+inputData.value)) + 1);
+            console.log('a', a);
+            console.log('b', b);
+
+            pointCell = document.getElementById(a + '-' + b);
+            pointCell.classList.add("point-data");
+            pointCell = a + '-' + b;
+        }
+    }
 }
+console.log('over:', over);

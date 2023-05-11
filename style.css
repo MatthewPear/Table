@@ -44,6 +44,16 @@
     border: 2px solid black;
     padding: 15px;
 }
+.menu3 {
+    margin-left: 60px;
+    top: 680px;
+    position: fixed;
+    display: inline;
+    background-color: white;
+    border-radius: 15%;
+    border: 2px solid black;
+    padding: 15px;
+}
 .controls {
     display: inline;
     align-items: center;
@@ -53,6 +63,13 @@
     border: 2px solid black;
     padding: 0px;
     background-color: red;
+    max-height: 50px;
+    max-width: 50px;
+}
+.point-data {
+    border: 2px solid black;
+    padding: 0px;
+    background-color: green;
     max-height: 50px;
     max-width: 50px;
 }
