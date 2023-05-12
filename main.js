@@ -32,6 +32,7 @@ counter.textContent = c;
 
 let activeCell = 1 + '-' + 1;
 let pointCell = 2 + '-' + 2;
+let colorCell;
 
 let direction = 'Right';
 let myInterval;
@@ -45,6 +46,8 @@ function drawTable () {
             el.remove();
         })
     }
+
+    over = false;
 
     const myTable = document.createElement("TABLE");
     myTable.setAttribute("id", "myTable");
@@ -76,19 +79,21 @@ function drawTable () {
     console.log('a', a);
     console.log('b', b);
 
-    pointCell = document.getElementById(a + '-' + b);
-    pointCell.classList.add("point-data");
     pointCell = a + '-' + b;
-
+    colorCell = document.getElementById(pointCell);
+    colorCell.classList.add("point-data");
+    
     let x = Math.floor((Math.random() * (+inputRow.value)) + 1);
     let y = Math.floor((Math.random() * (+inputData.value)) + 1);
     console.log('x', x);
     console.log('y', y);
 
-    activeCell = document.getElementById(x + '-' + y);
-    activeCell.classList.add("active-data");
     activeCell = x + '-' + y;
+    colorCell = document.getElementById(activeCell);
+    colorCell.classList.add("active-data");
+    
 
+    clearInterval(myInterval);
     myInterval = setInterval(moveCell, 1000);
     
     c = 0;
@@ -181,13 +186,13 @@ function moveCell () {
                 }
         }
 
-        let nextCell = document.getElementById(activeCell);
-        nextCell.classList.add("active-data");
+        colorCell = document.getElementById(activeCell);
+        colorCell.classList.add("active-data");
         console.log('activeCellID', activeCell)
 
         if(activeCell === pointCell) {
-            let removeCell = document.getElementById(pointCell);
-            removeCell.classList.remove("point-data");
+            colorCell = document.getElementById(pointCell);
+            colorCell.classList.remove("point-data");
             c = c + 1;
             counter.textContent = c;
 
@@ -196,9 +201,10 @@ function moveCell () {
             console.log('a', a);
             console.log('b', b);
 
-            pointCell = document.getElementById(a + '-' + b);
-            pointCell.classList.add("point-data");
             pointCell = a + '-' + b;
+            colorCell = document.getElementById(a + '-' + b);
+            colorCell.classList.add("point-data");
+            
         }
     }
 }
