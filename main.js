@@ -90,6 +90,9 @@ function drawTable () {
     activeCell = x + '-' + y;
 
     myInterval = setInterval(moveCell, 1000);
+    
+    c = 0;
+    counter.textContent = c;
 }
 
 console.log('activeCell', activeCell)
@@ -133,11 +136,6 @@ document.addEventListener('keydown', (event) => {
         moveCell();
     }
 })
-
-// if (alert === true) {
-//     over = true;
-// }
-
 
 function moveCell () {
     if(over===false) {
@@ -187,7 +185,7 @@ function moveCell () {
         nextCell.classList.add("active-data");
         console.log('activeCellID', activeCell)
 
-        if(activeCell === pointCell){
+        if(activeCell === pointCell) {
             let removeCell = document.getElementById(pointCell);
             removeCell.classList.remove("point-data");
             c = c + 1;
