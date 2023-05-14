@@ -32,7 +32,6 @@ counter.textContent = c;
 
 let activeCell = 1 + '-' + 1;
 let pointCell = 2 + '-' + 2;
-let colorCell;
 
 let direction = 'Right';
 let myInterval;
@@ -80,8 +79,8 @@ function drawTable () {
     console.log('b', b);
 
     pointCell = a + '-' + b;
-    colorCell = document.getElementById(pointCell);
-    colorCell.classList.add("point-data");
+    let greenCell = document.getElementById(pointCell);
+    greenCell.classList.add("point-data");
     
     let x = Math.floor((Math.random() * (+inputRow.value)) + 1);
     let y = Math.floor((Math.random() * (+inputData.value)) + 1);
@@ -89,8 +88,8 @@ function drawTable () {
     console.log('y', y);
 
     activeCell = x + '-' + y;
-    colorCell = document.getElementById(activeCell);
-    colorCell.classList.add("active-data");
+    let redCell = document.getElementById(activeCell);
+    redCell.classList.add("active-data");
     
 
     clearInterval(myInterval);
@@ -186,13 +185,13 @@ function moveCell () {
                 }
         }
 
-        colorCell = document.getElementById(activeCell);
-        colorCell.classList.add("active-data");
+        let redCell = document.getElementById(activeCell);
+        redCell.classList.add("active-data");
         console.log('activeCellID', activeCell)
 
         if(activeCell === pointCell) {
-            colorCell = document.getElementById(pointCell);
-            colorCell.classList.remove("point-data");
+            let greenCell = document.getElementById(pointCell);
+            greenCell.classList.remove("point-data");
             c = c + 1;
             counter.textContent = c;
 
@@ -202,9 +201,8 @@ function moveCell () {
             console.log('b', b);
 
             pointCell = a + '-' + b;
-            colorCell = document.getElementById(a + '-' + b);
-            colorCell.classList.add("point-data");
-            
+            greenCell = document.getElementById(a + '-' + b);
+            greenCell.classList.add("point-data");
         }
     }
 }
